@@ -1,13 +1,20 @@
-FROM python:3.9
+# Use an official Python runtime as the base image
+FROM python:3.10-slim
 
+# Set the working directory in the container
 WORKDIR /app
 
+# Copy the requirements file into the container
+COPY requirements.txt .
+
+# Install the dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the application code
 COPY . .
 
-RUN python -m venv venv
+# Expose the port the app runs on
+EXPOSE 5010
 
-RUN . venv/bin/activate && pip install --no-cache-dir -r requirements.txt
-
-EXPOSE 5000
-
-CMD ["sh", "-c", ". venv/bin/activate && python app.py"]
+# Define the command to run the application
+CMD ["python", "app.py"]

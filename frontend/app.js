@@ -6,7 +6,7 @@ const fs = require('fs');
 const FormData = require('form-data');
 
 const app = express();
-const port = 3000;
+const port = 3010;
 
 // Set up the view engine
 app.set('view engine', 'ejs');
@@ -37,7 +37,7 @@ app.post('/upload', upload.single('file'),async (req, res) => {
         form.append('file', fs.createReadStream(filePath), fileName);
 
        try {
-            const response = await axios.post('http://localhost:5000/upload', form, {
+            const response = await axios.post('http://localhost:5010/upload', form, {
                 headers: form.getHeaders()
             });
             const predictions = response.data.predictions;
@@ -61,7 +61,7 @@ app.post('/upload_train_file',upload.single('train_file'), async (req, res) => {
         const form = new FormData();
         form.append('file', fs.createReadStream(filePath), fileName);
        try {
-            const response = await axios.post('http://localhost:5000/upload_train_file', form, {
+            const response = await axios.post('http://localhost:5010/upload_train_file', form, {
                 headers: form.getHeaders()
             });
             const message = response.data.message;
@@ -79,7 +79,7 @@ app.post('/upload_train_file',upload.single('train_file'), async (req, res) => {
 
 app.post('/retrain_model', async (req, res) => {
     try {
-        const response = await axios.post('http://localhost:5000/retrain');
+        const response = await axios.post('http://localhost:5010/retrain');
         const messageRetrain = response.data.message;
         res.render('index', { messageRetrain });
     } catch (error) {

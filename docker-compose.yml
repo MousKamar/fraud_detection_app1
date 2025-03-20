@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "5010:5010"
+    volumes:
+      - ./backend:/app
+    environment:
+      - FLASK_ENV=development
+    networks:
+      - fraudapp-network
+    restart: always
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3010:3010"
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - backend
+    networks:
+      - fraudapp-network
+
+networks:
+  fraudapp-network:
+    driver: bridge

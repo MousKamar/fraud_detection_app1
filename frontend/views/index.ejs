@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fraud Detection</title>
+    <title>ByPass Fraud Detection</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Fraud Detection</h1>
+        <h1>ByPass Fraud Detection</h1>
         <form action="/upload" method="POST" enctype="multipart/form-data">
             <label for="file">Upload CSV File:</label>
             <input type="file" name="file" accept=".csv" required>
@@ -32,7 +32,8 @@
     </form>
 
     <% if (typeof messageRetrain !== 'undefined') { %>
-        <p style="color: green;"><%= messageRetrain %></p>
+        <div style="text-align: center;"></div>
+            <p style="color: green;"><%= messageRetrain %></p>
     <% } %>
     
 </body>
