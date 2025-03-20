@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/632597991697790416/a8fc9ae981ef4f0ca44e20c3f538a10d/artifacts
+end_time: 1742207975925
+entry_point_name: ''
+experiment_id: '632597991697790416'
+lifecycle_stage: active
+run_id: a8fc9ae981ef4f0ca44e20c3f538a10d
+run_name: languid-squid-131
+run_uuid: a8fc9ae981ef4f0ca44e20c3f538a10d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742207962876
+status: 3
+tags: []
+user_id: ali.tfaily

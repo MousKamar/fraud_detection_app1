@@ -1,0 +1,7 @@
+[core]
+    remote = dagshub
+['remote "dagshub"']
+    url = https://dagshub.com/alitfaily112/Fraud_Detection_Model_ML.dvc
+['remote "origin"']
+    url = s3://dvc
+    endpointurl = https://dagshub.com/alitfaily112/Fraud_Detection_Model_ML.s3

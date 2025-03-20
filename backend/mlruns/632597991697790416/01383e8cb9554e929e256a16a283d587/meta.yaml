@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/632597991697790416/01383e8cb9554e929e256a16a283d587/artifacts
+end_time: 1742208185679
+entry_point_name: ''
+experiment_id: '632597991697790416'
+lifecycle_stage: active
+run_id: 01383e8cb9554e929e256a16a283d587
+run_name: languid-bat-632
+run_uuid: 01383e8cb9554e929e256a16a283d587
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742208173395
+status: 3
+tags: []
+user_id: ali.tfaily

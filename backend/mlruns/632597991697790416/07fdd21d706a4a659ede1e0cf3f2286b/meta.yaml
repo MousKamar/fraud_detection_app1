@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/632597991697790416/07fdd21d706a4a659ede1e0cf3f2286b/artifacts
+end_time: 1742209748646
+entry_point_name: ''
+experiment_id: '632597991697790416'
+lifecycle_stage: active
+run_id: 07fdd21d706a4a659ede1e0cf3f2286b
+run_name: luxuriant-shrimp-351
+run_uuid: 07fdd21d706a4a659ede1e0cf3f2286b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742209734713
+status: 3
+tags: []
+user_id: ali.tfaily

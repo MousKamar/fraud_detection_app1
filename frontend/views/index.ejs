@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Detection</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Fraud Detection</h1>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <label for="file">Upload CSV File:</label>
+            <input type="file" name="file" accept=".csv" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <h1>Retrain File Upload</h1>
+    <form action="/upload_train_file" method="POST" enctype="multipart/form-data">
+        <label for="train_file">Upload CSV File for Training:</label>
+        <input type="file" name="train_file" accept=".csv" required>
+        <button type="submit">Upload</button>
+    </form>
+    <% if (typeof message !== 'undefined') { %>
+        <p style="color: green;"><%= message %></p>
+    <% } %>
+
+    <h1>Retrain Model</h1>
+    <form action="/retrain_model" method="POST">
+        <button type="submit" id="retrain-btn">Retrain</button>
+    </form>
+
+    <% if (typeof messageRetrain !== 'undefined') { %>
+        <p style="color: green;"><%= messageRetrain %></p>
+    <% } %>
+    
+</body>
+</html>
