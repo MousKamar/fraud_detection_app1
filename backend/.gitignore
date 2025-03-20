@@ -1,3 +1,5 @@
 /data
 /venv
 /mlartifacts
+/training_files
+/uploads
