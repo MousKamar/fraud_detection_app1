@@ -1,13 +1,12 @@
-version: '3.8'
-
 services:
-  backend:
-    build:
-      context: ./backend
+  fraud_detection_app-backend-1:
+    #build:
+     # context: ./backend
+    image: mouskam/backend-app:latest
     ports:
       - "5010:5010"
-    volumes:
-      - ./backend:/app
+    #volumes:
+    #  - ./backend:/app
     environment:
       - FLASK_ENV=development
     networks:
@@ -15,14 +14,15 @@ services:
     restart: always
 
   frontend:
-    build:
-      context: ./frontend
+    #build:
+      #context: ./frontend
+    image: mouskam/frontend-app:latest
     ports:
       - "3010:3010"
-    volumes:
-      - ./frontend:/app
+    #volumes:
+    #  - ./frontend:/app
     depends_on:
-      - backend
+      - fraud_detection_app-backend-1
     networks:
       - fraudapp-network
 

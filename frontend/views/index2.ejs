@@ -9,18 +9,18 @@
 <body>
     <div class="container">
         <h1>ByPass Fraud Detection</h1>
-        <form action="/upload" method="POST">
-            <label for="fileUrl">File URL (Dagshub):</label>
-            <input type="text" id="fileUrl" name="fileUrl" required>
-            <button type="submit">Upload</button>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <label for="file">Upload CSV File:</label>
+            <input type="file" name="file" accept=".csv" required>
+            <button type="submit">Submit</button>
         </form>
     </div>
 
     <h1>Retrain File Upload</h1>
-    <form action="/upload_train_file" method="POST">
-        <label for="trainFileUrl">Training File URL (Dagshub):</label>
-        <input type="text" id="trainFileUrl" name="trainFileUrl" required>
-        <button type="submit">Upload Training File</button>
+    <form action="/upload_train_file" method="POST" enctype="multipart/form-data">
+        <label for="train_file">Upload CSV File for Training:</label>
+        <input type="file" name="train_file" accept=".csv" required>
+        <button type="submit">Upload</button>
     </form>
     <% if (typeof message !== 'undefined') { %>
         <p style="color: green;"><%= message %></p>
