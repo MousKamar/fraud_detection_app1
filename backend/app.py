@@ -157,8 +157,16 @@ def retrain_model(latest_file_path, experiment_name, kernel_sizes,
         mlflow.log_param("epochs", epochs)
         mlflow.log_param("batch_size", batch_size)
 
-        model1.fit(reshaped_images, ytrain, validation_data=(reshaped_valid_images, yvalid),
+        history = model1.fit(reshaped_images, ytrain, validation_data=(reshaped_valid_images, yvalid),
                     epochs=epochs, batch_size=batch_size, verbose=1, callbacks=[early_stopping])
+       
+        # Log metrics to MLflow
+        final_val_auc = history.history['val_auc'][-1]
+        mlflow.log_metric("final_val_auc", final_val_auc)
+
+        final_train_auc = history.history['auc'][-1]
+        mlflow.log_metric("final_train_auc", final_train_auc)
+
         mlflow.keras.log_model(model1, "fraud_detection_model")
         model_uri = "runs:/{}/fraud_detection_model".format(mlflow.active_run().info.run_id)
 
