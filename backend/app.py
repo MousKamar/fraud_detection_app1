@@ -144,7 +144,7 @@ def retrain_model(latest_file_path, experiment_name, kernel_sizes,
     ])
 
     # Compile and train the model
-    early_stopping = EarlyStopping(monitor='val_auc', mode='max', patience=5, restore_best_weights=True)
+    early_stopping = EarlyStopping(monitor='val_AUC', mode='max', patience=5, restore_best_weights=True)
     reshaped_valid_images = xvalid.reshape(xvalid.shape[0], 3, 3, 1)
     model1.compile(optimizer='adam', loss='binary_crossentropy', metrics=['AUC'])
 
@@ -161,7 +161,7 @@ def retrain_model(latest_file_path, experiment_name, kernel_sizes,
                     epochs=epochs, batch_size=batch_size, verbose=1, callbacks=[early_stopping])
        
         # Log metrics to MLflow
-        final_val_auc = history.history['val_auc'][-1]
+        final_val_auc = history.history['val_AUC'][-1]
         mlflow.log_metric("final_val_auc", final_val_auc)
 
         final_train_auc = history.history['AUC'][-1]
@@ -227,7 +227,7 @@ def retrain():
     filters=(16, 32, 16),
     dense_units=256,
     dropout_rate=0.3,
-    epochs=20,
+    epochs=10,
     batch_size=512
     )
     return jsonify({"message": "Model retrained successfully!"}), 200
