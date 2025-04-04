@@ -123,10 +123,11 @@ def preprocess_data(file_path):
 
     return reshaped_images, msisdn_list
 
-def retrain_model():
+def retrain_model(latest_file_path, experiment_name, kernel_sizes, 
+                   filters, dense_units, dropout_rate, epochs, batch_size):
     # Directly use the uploaded file from the "uploads" directory
-    latest_file_path = get_latest_file()
-    mlflow.set_experiment("fraud_detection_experiment") 
+    #latest_file_path = get_latest_file()
+    mlflow.set_experiment(experiment_name) 
     # Preprocess the data
     reshaped_images, xvalid, ytrain, yvalid = Training_preprocess_data(latest_file_path)
 
@@ -147,10 +148,17 @@ def retrain_model():
     reshaped_valid_images = xvalid.reshape(xvalid.shape[0], 3, 3, 1)
     model1.compile(optimizer='adam', loss='binary_crossentropy', metrics=['AUC'])
 
-    model1.fit(reshaped_images, ytrain, validation_data=(reshaped_valid_images, yvalid), epochs=15, batch_size=1024, verbose=1, callbacks=[early_stopping])
-
     # Log the retrained model to MLFlow
     with mlflow.start_run():
+        mlflow.log_param("kernel_sizes", kernel_sizes)
+        mlflow.log_param("filters", filters)
+        mlflow.log_param("dense_units", dense_units)
+        mlflow.log_param("dropout_rate", dropout_rate)
+        mlflow.log_param("epochs", epochs)
+        mlflow.log_param("batch_size", batch_size)
+
+        model1.fit(reshaped_images, ytrain, validation_data=(reshaped_valid_images, yvalid),
+                    epochs=epochs, batch_size=batch_size, verbose=1, callbacks=[early_stopping])
         mlflow.keras.log_model(model1, "fraud_detection_model")
         model_uri = "runs:/{}/fraud_detection_model".format(mlflow.active_run().info.run_id)
 
@@ -204,7 +212,16 @@ def upload_file():
 
 @app.route("/retrain", methods=["POST"])
 def retrain():
-    retrain_model()
+    retrain_model(
+    latest_file_path = get_latest_file(),  # Assuming this function gets the latest data file path
+    experiment_name="fraud_detection_experiment_v2",
+    kernel_sizes=(1, 2, 3),
+    filters=(16, 32, 16),
+    dense_units=256,
+    dropout_rate=0.3,
+    epochs=20,
+    batch_size=512
+    )
     return jsonify({"message": "Model retrained successfully!"}), 200
 
 @app.route("/upload_train_file", methods=["POST"])
