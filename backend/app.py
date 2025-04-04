@@ -164,7 +164,7 @@ def retrain_model(latest_file_path, experiment_name, kernel_sizes,
         final_val_auc = history.history['val_auc'][-1]
         mlflow.log_metric("final_val_auc", final_val_auc)
 
-        final_train_auc = history.history['auc'][-1]
+        final_train_auc = history.history['AUC'][-1]
         mlflow.log_metric("final_train_auc", final_train_auc)
 
         mlflow.keras.log_model(model1, "fraud_detection_model")
