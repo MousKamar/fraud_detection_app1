@@ -3,3 +3,5 @@
 /mlartifacts
 /training_files
 /uploads
+.dvcignore
+.dockerignore
